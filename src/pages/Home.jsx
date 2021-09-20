@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { getCategories } from '../services/api';
+import shoppingCartIcon from '../images/shoppingCartIcon.png';
 
 class Home extends Component {
   constructor() {
@@ -37,6 +39,13 @@ class Home extends Component {
                 <li key={ category.id } data-testid="category">{ category.name }</li>))}
             </ul>)
           : ''}
+        <Link data-testid="shopping-cart-button" to="/shoppingcart">
+          <img
+            className="shopping-cart-img"
+            src={ shoppingCartIcon }
+            alt="shoppingCartIcon"
+          />
+        </Link>
       </section>
     );
   }
