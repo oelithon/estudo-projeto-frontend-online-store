@@ -29,6 +29,14 @@ class Home extends Component {
     });
   }
 
+  handleClick = async (event) => {
+    const result = await getProductsFromCategoryAndQuery('', event.target.name);
+    this.setState({
+      productCatalog: result.results,
+    });
+    return result;
+  }
+
   getProductCategoryAPI = async () => {
     const getAPI = await getCategories();
     this.setState({
@@ -53,13 +61,6 @@ class Home extends Component {
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
-        {requestAPI
-          ? (
-            <ul>
-              {getCategoryAPI.map((category) => (
-                <li key={ category.id } data-testid="category">{ category.name }</li>))}
-            </ul>)
-          : ''}
         <Link data-testid="shopping-cart-button" to="/shoppingcart">
           <img
             className="shopping-cart-img"
@@ -74,10 +75,27 @@ class Home extends Component {
           value={ searchText }
           onChange={ this.handleChange }
         />
-        <ProductCatalog productCatalog={ productCatalog } />
         <button type="button" data-testid="query-button" onClick={ this.searchProducts }>
           Pesquisa
         </button>
+        <br />
+        <br />
+        {requestAPI
+          ? (
+            <>
+              {getCategoryAPI.map((category) => (
+                <button
+                  onClick={ this.handleClick }
+                  type="button"
+                  key={ category.id }
+                  data-testid="category"
+                  name={ category.name }
+                >
+                  { category.name }
+                </button>))}
+            </>)
+          : ''}
+        <ProductCatalog productCatalog={ productCatalog } />
       </section>
     );
   }

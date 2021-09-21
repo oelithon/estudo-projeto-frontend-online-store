@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 class Card extends React.Component {
   render() {
     const { title, thumbnail, price } = this.props;
-
     return (
       <main data-testid="product">
         <p>{ title }</p>
