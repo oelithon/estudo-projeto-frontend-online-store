@@ -9,6 +9,7 @@ class ProductCatalog extends React.Component {
       <div>
         {productCatalog.map(({ title, thumbnail, price, id }) => (<Card
           key={ id }
+          id={ id }
           title={ title }
           thumbnail={ thumbnail }
           price={ price }
