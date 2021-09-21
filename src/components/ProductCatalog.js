@@ -1,20 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Card from './Card';
 
 class ProductCatalog extends React.Component {
   render() {
     const { productCatalog } = this.props;
     return (
-      <section>
-        { productCatalog.map(({ title, thumbnail, price, id }) => (<Card
+      productCatalog.map(({ title, thumbnail, price, id }) => (
+        <Link
+          data-testid="product-detail-link"
           key={ id }
-          id={ id }
-          title={ title }
-          thumbnail={ thumbnail }
-          price={ price }
-        />)) }
-      </section>
+          to={ `/products/${id}/${title}` }
+        >
+          <Card
+            title={ title }
+            thumbnail={ thumbnail }
+            price={ price }
+          />
+        </Link>
+      ))
     );
   }
 }
