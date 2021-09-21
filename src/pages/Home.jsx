@@ -1,20 +1,32 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { getCategories } from '../services/api';
+import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import shoppingCartIcon from '../images/shoppingCartIcon.png';
+import ProductCatalog from '../components/ProductCatalog';
 
 class Home extends Component {
   constructor() {
     super();
 
     this.state = {
+      searchText: '',
+      productCatalog: [],
       getCategoryAPI: [],
       requestAPI: false,
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.searchProducts = this.searchProducts.bind(this);
   }
 
   componentDidMount() {
     this.getProductCategoryAPI();
+  }
+
+  handleChange({ target }) {
+    const { value, name } = target;
+    this.setState({
+      [name]: value,
+    });
   }
 
   getProductCategoryAPI = async () => {
@@ -25,8 +37,17 @@ class Home extends Component {
     });
   }
 
+  async searchProducts() {
+    const { searchText } = this.state;
+    const result = await getProductsFromCategoryAndQuery('', searchText);
+    this.setState({
+      productCatalog: result.results,
+    });
+    return result;
+  }
+
   render() {
-    const { getCategoryAPI, requestAPI } = this.state;
+    const { getCategoryAPI, requestAPI, productCatalog, searchText } = this.state;
     return (
       <section>
         <p data-testid="home-initial-message">
@@ -46,6 +67,17 @@ class Home extends Component {
             alt="shoppingCartIcon"
           />
         </Link>
+        <input
+          type="text"
+          data-testid="query-input"
+          name="searchText"
+          value={ searchText }
+          onChange={ this.handleChange }
+        />
+        <ProductCatalog productCatalog={ productCatalog } />
+        <button type="button" data-testid="query-button" onClick={ this.searchProducts }>
+          Pesquisa
+        </button>
       </section>
     );
   }
