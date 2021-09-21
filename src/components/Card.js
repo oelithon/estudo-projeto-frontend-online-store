@@ -9,6 +9,7 @@ class Card extends React.Component {
         <p>{ title }</p>
         <img src={ thumbnail } alt={ title } />
         <p>{ price }</p>
+        <button type="button">Adicionar ao carrinho</button>
       </main>
     );
   }

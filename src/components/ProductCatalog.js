@@ -6,12 +6,14 @@ class ProductCatalog extends React.Component {
   render() {
     const { productCatalog } = this.props;
     return (
-      productCatalog.map(({ title, thumbnail, price, id }) => (<Card
-        key={ id }
-        title={ title }
-        thumbnail={ thumbnail }
-        price={ price }
-      />))
+      <div>
+        {productCatalog.map(({ title, thumbnail, price, id }) => (<Card
+          key={ id }
+          title={ title }
+          thumbnail={ thumbnail }
+          price={ price }
+        />))}
+      </div>
     );
   }
 }
@@ -19,4 +21,5 @@ class ProductCatalog extends React.Component {
 ProductCatalog.propTypes = {
   productCatalog: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
+
 export default ProductCatalog;
