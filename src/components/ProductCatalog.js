@@ -27,4 +27,5 @@ class ProductCatalog extends React.Component {
 ProductCatalog.propTypes = {
   productCatalog: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
+
 export default ProductCatalog;
