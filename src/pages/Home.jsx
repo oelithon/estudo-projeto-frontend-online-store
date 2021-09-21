@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import shoppingCartIcon from '../images/shoppingCartIcon.png';
 import ProductCatalog from '../components/ProductCatalog';
-import { getProductsFromCategoryAndQuery } from '../services/api';
 
 class Home extends Component {
   constructor() {
@@ -11,9 +11,15 @@ class Home extends Component {
     this.state = {
       searchText: '',
       productCatalog: [],
+      getCategoryAPI: [],
+      requestAPI: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.searchProducts = this.searchProducts.bind(this);
+  }
+
+  componentDidMount() {
+    this.getProductCategoryAPI();
   }
 
   handleChange({ target }) {
@@ -23,10 +29,14 @@ class Home extends Component {
     });
   }
 
-  /**
- * Consultei o repositório do Grupo 29 para resolver essa parte do SearchProducts().
- * https://github.com/tryber/sd-014-b-project-frontend-online-store/pull/157
- */
+  getProductCategoryAPI = async () => {
+    const getAPI = await getCategories();
+    this.setState({
+      getCategoryAPI: getAPI,
+      requestAPI: true,
+    });
+  }
+
   async searchProducts() {
     const { searchText } = this.state;
     const result = await getProductsFromCategoryAndQuery('', searchText);
@@ -37,13 +47,19 @@ class Home extends Component {
   }
 
   render() {
-    const { productCatalog, searchText } = this.state;
-
+    const { getCategoryAPI, requestAPI, productCatalog, searchText } = this.state;
     return (
       <section>
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
+        {requestAPI
+          ? (
+            <ul>
+              {getCategoryAPI.map((category) => (
+                <li key={ category.id } data-testid="category">{ category.name }</li>))}
+            </ul>)
+          : ''}
         <Link data-testid="shopping-cart-button" to="/shoppingcart">
           <img
             className="shopping-cart-img"
