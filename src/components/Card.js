@@ -2,10 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Card extends React.Component {
-  // getLocalStorage = () => {
-  //   JSON.parse(localStorage.getItem('item-list'));
-  // }
-
   selectedProduct = () => {
     const { title, thumbnail, price, id } = this.props;
     const item = {
@@ -26,17 +22,18 @@ class Card extends React.Component {
   render() {
     const { title, thumbnail, price } = this.props;
     return (
-      <main data-testid="product">
+      <section data-testid="product">
         <p>{ title }</p>
         <img src={ thumbnail } alt={ title } />
         <p>{ price }</p>
         <button
           type="button"
+          data-testid="product-add-to-cart"
           onClick={ this.selectedProduct }
         >
           Adicionar ao carrinho
         </button>
-      </main>
+      </section>
     );
   }
 }
@@ -45,6 +42,7 @@ Card.propTypes = {
   title: PropTypes.string.isRequired,
   thumbnail: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default Card;
