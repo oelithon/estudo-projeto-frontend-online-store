@@ -28,7 +28,7 @@ class Products extends Component {
 
   handleClick = () => {
     const { product } = this.state;
-    localStorage.setItem('itemsData', JSON.stringify([product]));
+    localStorage.setItem('item-list', JSON.stringify([product]));
   }
 
   render() {

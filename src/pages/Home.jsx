@@ -57,7 +57,7 @@ class Home extends Component {
   render() {
     const { getCategoryAPI, requestAPI, productCatalog, searchText } = this.state;
     return (
-      <section>
+      <main>
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
@@ -96,7 +96,7 @@ class Home extends Component {
             </>)
           : ''}
         <ProductCatalog productCatalog={ productCatalog } />
-      </section>
+      </main>
     );
   }
 }

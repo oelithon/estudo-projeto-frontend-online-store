@@ -17,6 +17,7 @@ class ProductCatalog extends React.Component {
             title={ title }
             thumbnail={ thumbnail }
             price={ price }
+            id={ id }
           />
         </Link>
       ))
@@ -27,4 +28,5 @@ class ProductCatalog extends React.Component {
 ProductCatalog.propTypes = {
   productCatalog: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
+
 export default ProductCatalog;

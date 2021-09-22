@@ -11,22 +11,19 @@ class ShoppingCart extends Component {
   }
 
   componentDidMount() {
-    this.fetchProducts();
+    this.getProductLocalStorage();
   }
 
-  fetchProducts = () => {
-    const productLocalStorage = JSON.parse(localStorage.getItem('itemsData'));
-    console.log(productLocalStorage);
-    this.setState({
-      products: productLocalStorage,
-    });
-    const { products } = this.state;
-    console.log(products);
+  getProductLocalStorage = () => {
+    const productLocalStorage = JSON.parse(localStorage.getItem('item-list'));
     if (productLocalStorage !== null) {
       this.setState({
         productOnCart: true,
       });
     }
+    this.setState({
+      products: productLocalStorage,
+    });
   }
 
   render() {
