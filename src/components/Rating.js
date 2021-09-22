@@ -11,25 +11,21 @@ class Rating extends Component {
         </label>
 
         <label htmlFor="UmaEstrela">
-          <br />
           2
           <input type="radio" name="pontuação" value="2" />
         </label>
 
         <label htmlFor="UmaEstrela">
-          <br />
           3
           <input type="radio" name="pontuação" value="3" />
         </label>
 
         <label htmlFor="UmaEstrela">
-          <br />
           4
           <input type="radio" name="pontuação" value="4" />
         </label>
 
         <label htmlFor="UmaEstrela">
-          <br />
           5
           <input type="radio" name="pontuação" value="5" />
         </label>
