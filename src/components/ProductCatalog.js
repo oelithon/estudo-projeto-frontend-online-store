@@ -17,6 +17,7 @@ class ProductCatalog extends React.Component {
             title={ title }
             thumbnail={ thumbnail }
             price={ price }
+            id={ id }
           />
         </Link>
       ))

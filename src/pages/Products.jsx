@@ -26,6 +26,11 @@ class Products extends Component {
     });
   }
 
+  handleClick = () => {
+    const { product } = this.state;
+    localStorage.setItem('item-list', JSON.stringify([product]));
+  }
+
   render() {
     const { product, loading } = this.state;
     return (
@@ -44,8 +49,16 @@ class Products extends Component {
               ))}
             </ul>
           )}
+        <button
+          data-testid="product-detail-add-to-cart"
+          type="button"
+          id={ product.id }
+          onClick={ this.handleClick }
+        >
+          Adicionar ao carrinho
+        </button>
         <Link data-testid="shopping-cart-button" to="/shoppingcart">
-          <button type="button">Carrinho de Compras</button>
+          <button type="button">Carrinho de compras</button>
         </Link>
       </div>
     );
