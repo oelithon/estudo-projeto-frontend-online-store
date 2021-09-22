@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import Card from './Card';
 
 class ProductCatalog extends React.Component {
@@ -8,18 +7,13 @@ class ProductCatalog extends React.Component {
     const { productCatalog } = this.props;
     return (
       productCatalog.map(({ title, thumbnail, price, id }) => (
-        <Link
-          data-testid="product-detail-link"
+        <Card
           key={ id }
-          to={ `/products/${id}/${title}` }
-        >
-          <Card
-            title={ title }
-            thumbnail={ thumbnail }
-            price={ price }
-            id={ id }
-          />
-        </Link>
+          title={ title }
+          thumbnail={ thumbnail }
+          price={ price }
+          id={ id }
+        />
       ))
     );
   }
