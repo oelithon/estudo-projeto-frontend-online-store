@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getProductsFromCategoryAndQuery } from '../services/api';
+import Rating from '../components/Rating';
 
 class Products extends Component {
   constructor() {
@@ -60,6 +61,7 @@ class Products extends Component {
         <Link data-testid="shopping-cart-button" to="/shoppingcart">
           <button type="button">Carrinho de compras</button>
         </Link>
+        <Rating />
       </div>
     );
   }
